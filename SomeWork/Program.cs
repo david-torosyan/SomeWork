@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SomeWork.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,13 @@ namespace SomeWork
     {
         static void Main(string[] args)
         {
+            PersonModel model = new PersonModel()
+            {
+                FirstName = "Name",
+                LastName = "Surname"
+            };
 
+            DataAccess.AddNewPerson(model);
         }
     }
 }

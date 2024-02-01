@@ -1,4 +1,5 @@
-﻿using UnitTestExample;
+﻿using System;
+using UnitTestExample;
 using Xunit;
 
 namespace SomeWork.Tests
@@ -18,6 +19,16 @@ namespace SomeWork.Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void Divide_ShouldThrowDivideByZeroException()
+        {
+            // Use a lambda expression for Assert.Throws
+            Action divideByZeroOperation = () => Calculator.Divide(5, 0);
+
+            // Assert.Throws expects a delegate, so you pass the lambda expression
+            Assert.Throws<DivideByZeroException>(divideByZeroOperation);
+        }
+
         /// <summary>
         /// It takes arguments.
         /// </summary>
@@ -27,6 +38,7 @@ namespace SomeWork.Tests
         [Theory]
         [InlineData(5, 4, 9)]
         [InlineData(5.25, 12, 17.25)]
+        [InlineData(double.MaxValue, 12, double.MaxValue)]
         public void Add_ShouldCalculate2(double x, double y, double expected)
         {
             // Expected
